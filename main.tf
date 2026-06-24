@@ -1,5 +1,18 @@
 terraform {
+    backend "remote" {
+        hostname = "app.terraform.io"
+        organization = "Usine_a_gaz"
 
+        workspaces {
+            name = "terraform_vcs"
+        }
+    }
+    required_providers {
+        aws = {
+            source  = "hashicorp/aws"
+            version = "6.50.0"
+        }
+    }
 }
 
 provider "aws" {
