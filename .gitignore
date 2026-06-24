@@ -11,3 +11,6 @@
 
 # Répertoire local de Terraform
 .terraform/
+
+*.tfvars
+*.tfvars.json
