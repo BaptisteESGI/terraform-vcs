@@ -1,3 +1,7 @@
+terraform {
+
+}
+
 provider "aws" {
   region  = "eu-west-1"
 }
@@ -12,5 +16,5 @@ module "apache" {
 
 output "public_ip" {
   description = "Public IP of the provisioned EC2 instance"
-  value       = module.test.public_ip
+  value       = module.apache.public_ip
 }
