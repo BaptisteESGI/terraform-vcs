@@ -1,3 +1,1 @@
-# data "aws_vpc" "default" {
-#   default = true
-# }
+# Removed default VPC lookup because the module now provisions its own VPC.
