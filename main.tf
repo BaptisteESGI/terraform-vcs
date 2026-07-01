@@ -1,33 +1,25 @@
 terraform {
-    backend "remote" {
-        hostname = "app.terraform.io"
-        organization = "Usine_a_gaz"
+  backend "remote" {
+    hostname = "app.terraform.io"
+    organization = "Usine_a_gaz"
 
-        workspaces {
-            name = "terraform_vcs"
-        }
+    workspaces {
+      name = "Terraform-vcs"
     }
-    required_providers {
-        aws = {
-            source  = "hashicorp/aws"
-            version = "6.50.0"
-        }
+  }
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "6.50.0"
     }
+  }
 }
 
-provider "aws" {
-  region  = "eu-west-1"
-}
-
-module "apache" {
-  source             = "./aws_demo_apache"
-  public_key         = var.public_key
-  instance_name      = var.instance_name
-  allowed_http_cidrs = var.allowed_http_cidrs
-  allowed_ssh_cidrs  = var.allowed_ssh_cidrs
+resource "aws_instance" "my_server" {
+  ami           = "ami-06c66eb06932cda07"
+  instance_type = var.instance_type
 }
 
 output "public_ip" {
-  description = "Public IP of the provisioned EC2 instance"
-  value       = module.apache.public_ip
+  value = aws_instance.my_server.public_ip
 }

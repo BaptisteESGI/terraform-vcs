@@ -1,1 +1,0 @@
-# Removed default VPC lookup because the module now provisions its own VPC.
